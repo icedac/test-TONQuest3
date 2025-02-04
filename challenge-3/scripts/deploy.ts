@@ -56,11 +56,14 @@ function jettonMinterInitData(
 }
 
 
+import tokenMetadata from "./tokenmeta.json";
+
 async function deployContract() {
     const codeCell = Cell.fromBoc(Buffer.from(hex,"hex"))[0];
 
-    const ownerAddress = Address.parse("kQCj2gVRdFS0qOZnUFXdMliONgSANYXfQUDMsjd8fbTW-aAI");
-    const metadataStr = "EnterYourOwnJetton2"
+    const ownerAddress = Address.parse("0QALmfiJwWJfwzCr5zNBza4pTFU7E85JfhEJku9L4BrPZ85Q");
+    const metadataStr = JSON.stringify(tokenMetadata);
+
     const dataCell = jettonMinterInitData(ownerAddress,metadataStr);   
 
     const stateInit: StateInit = {
@@ -105,6 +108,7 @@ async function deployContract() {
         })
     
     console.log(scanAddr);
+    console.log(deployLink);
 
 }
 
